@@ -1,117 +1,87 @@
-var data = [
-    {
-        title: "三十而已",
-        desc: "话题爽剧！姐姐飒气挑战",
-        img: "https://puui.qpic.cn/media_img/lena/PICgthm4a_580_1680/0",
-        bg: "rgb(25,117,180)"
-    },
-    {
-        title: "明子·更新",
-        desc: "唢呐版《倍爽儿》超嗨",
-        img: "https://puui.qpic.cn/media_img/lena/PICvqg2sg_580_1680/0",
-        bg: "rgb(1, 9, 30)"
-    },
-    {
-        title: "穿越火线",
-        desc: "鹿晗吴磊电竞逐梦",
-        img: "https://puui.qpic.cn/media_img/lena/PICjkg0v5_580_1680/0",
-        bg: "rgb(0,0,0);"
-    },
-    {
-        title: "青春环游记",
-        desc: "贾玲爆笑模仿吉娜",
-        img: "https://puui.qpic.cn/media_img/lena/PIC1ks92y_580_1680/0",
-        bg: "rgb(170, 210, 184)"
-    },
-    {
-        title: "认真的嘎嘎们",
-        desc: "56进24",
-        img: "https://puui.qpic.cn/vupload/0/1596170042239_fqsodx2hu8.jpg/0",
-        bg: "rgb(28, 28, 28)"
-    },
-    {
-        title: "特别有种：致命行动",
-        desc: "战狼生死救援",
-        img: "https://puui.qpic.cn/media_img/lena/PICoiqm2f_580_1680/0",
-        bg: "rgb(105, 77, 56)"
-    },
-    {
-        title: "经典用流传",
-        desc: "汪苏泷演绎现代版《桃花扇》",
-        img: "https://vfiles.gtimg.cn/vupload/20200801/1f99821596240701848.jpg",
-        bg: "rgb(3, 4, 25)"
-    },
-    {
-        title: "舞者",
-        desc: "佟丽娅主持春晚只因胆子大",
-        img: "https://puui.qpic.cn/vupload/0/1596284169509_0rc2ds8lrh8o.jpg/0",
-        bg: "rgb(23,22,17)"
-    },
-    {
-        title: "奔跑吧",
-        desc: "凌潇肃沙溢泥潭打滚",
-        img: "https://puui.qpic.cn/media_img/lena/PIC0vrw2o_580_1680/0",
-        bg: "rgb(178, 195, 211)"
+// 选择图片容器
+var imgs = document.getElementById('imgs');
+// 选择侧边导航栏容器
+var sideBar = document.getElementById('side-bar');
+
+// 存储我们创建的图片元素（a)
+var imgsDom = [];
+// 存储我们创建的导航元素（a）
+var navDom = [];
+
+// 记录当前活跃的图片和导航（active);
+var activeImg = null;
+var activeNav = null;
+
+// 根据data数组，生成对应的图片以及侧边栏
+
+for(var i=0; i<data.length; i++) {
+  // i 数组中的索引
+  // item代表数组中的一个对象
+  var item = data[i];
+
+  // 创建图片（a)
+  var tagA = document.createElement('a');
+      tagA.setAttribute('href', '#');
+      tagA.style.backgroundColor = item.bg;
+      tagA.style.backgroundImage = 'url('+ item.img +')';
+      imgs.appendChild(tagA);
+      imgsDom.push(tagA);
+
+  // 创建导航（a）
+  var tagNav = document.createElement('a');
+      tagNav.setAttribute('class', 'nav');
+      tagNav.setAttribute('href', '#');
+      tagNav.setAttribute('title',item.title + ':' + item.desc);
+      tagNav.innerHTML = '<span>'+ item.title +'</span> ' + item.desc;
+      sideBar.appendChild(tagNav); 
+      navDom.push(tagNav);
+  // 第一个元素让它展示（图片展示，标题展示）
+  if (i == 0) {
+    tagA.setAttribute('class', 'active');
+    tagNav.setAttribute('class', 'active');
+    activeImg = tagA;
+    activeNav = tagNav;
+  }
+  tagNav.onmouseenter = (function (tagA, tagNav) {
+    return function () {
+      // 鼠标移入清除定时器。
+      clearInterval(t);
+
+      // 1. 把原来活跃的图片和导航取消
+      activeNav.setAttribute('class', 'nav');
+      activeImg.setAttribute('class', '');
+      // 2. 把当前被鼠标选中的导航和图片展示
+       tagA.setAttribute('class', 'active');
+       tagNav.setAttribute('class', 'active');
+      // 3. 记录最新的导航和图片
+      activeImg = tagA;
+      activeNav = tagNav;
     }
-];
-var imgs = document.getElementById("imgs");
-var select = document.getElementById("select");
-var activeTitle = "";
-var activeImg = "";
-var titleDOM = [];
-var imgDOM = [];
-var t = null;
-data.forEach(function(item, index) {
-    var tagA = document.createElement("a");
-    tagA.setAttribute("href", "#");
-    var style =
-        "background-color:" +
-        item.bg +
-        ";background-image:url(" +
-        item.img +
-        ")";
-    tagA.setAttribute("style", style);
-    imgs.appendChild(tagA);
-    var tagA1 = document.createElement("a");
-    tagA1.setAttribute("href", "#");
-    tagA1.setAttribute("class", "nav");
-    tagA1.setAttribute("title", item.title + "：" + item.desc);
-    // var banners = item.title.split(":");
-    tagA1.innerHTML = " <span>" + item.title + "</span> "  + item.desc  ;
-    select.appendChild(tagA1);
-    if (index == 0) {
-        tagA.setAttribute("class", "active");
-        tagA1.setAttribute("class", "active");
-        activeImg = tagA;
-        activeTitle = tagA1;
-    }
-    tagA1.onmouseenter = function() {
-        activeImg.removeAttribute("class");
-        activeTitle.setAttribute("class", "nav");
-        tagA.setAttribute("class", "active");
-        tagA1.setAttribute("class", "active");
-        activeImg = tagA;
-        activeTitle = tagA1;
-        clearInterval(t);
-    };
-    titleDOM.push(tagA1);
-    imgDOM.push(tagA);
-    tagA1.onmouseleave = function() {
-        t = setInterval(move, 3000);
-    };
-});
-function move() {   
-    activeImg.removeAttribute("class");
-    activeTitle.setAttribute("class", "nav");
-    var index = titleDOM.indexOf(activeTitle);
-    if (index == titleDOM.length - 1) {
-        activeTitle = titleDOM[0];
-        activeImg = imgDOM[0];
-    } else {
-        activeImg = imgDOM[index + 1];
-        activeTitle = titleDOM[index + 1];
-    }
-    activeImg.setAttribute("class", "active");
-    activeTitle.setAttribute("class", "active");
+  })(tagA, tagNav);
+  tagNav.onmouseleave = function() {
+    t = setInterval(move, 3000);
+  }
 }
-t = setInterval(move, 3000);
+
+// 自己动
+function move() {
+  // 1. 把原来活跃的图片和导航取消
+    activeNav.setAttribute('class', 'nav');
+    activeImg.setAttribute('class', '');
+  // 找到当前元素的下一个
+  // 当前图片在页面中的位置
+  var index = imgsDom.indexOf(activeImg);
+  console.log(index);
+  // 如果是最后一个图片，下一个就是第一个图片
+  if  (index == data.length - 1) {
+    activeNav = navDom[0];
+    activeImg = imgsDom[0];
+  } else {
+    activeImg = imgsDom[index + 1];
+    activeNav = navDom[index + 1];
+  }
+  // 活跃的图片和导航，激活（具有active类名）
+  activeImg.setAttribute('class', 'active');
+  activeNav.setAttribute('class', 'active');
+}
+var t = setInterval(move, 3000);
