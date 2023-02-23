@@ -14,9 +14,10 @@
 
     var totalDuration = 500;
     var duration = 10;
-    var times = totalDuration / duration;
+    var times = Math.floor(totalDuration / duration);
     var dis = (to - from) / times;
 
+    var curTimes = 0;
     if (
       (oldinitIndex === 0 && index === ul.children.length - 1) ||
       (oldinitIndex === ul.children.length - 1 && index === 0)
@@ -33,19 +34,10 @@
       to = cloneItem.offsetTop - uy;
       dis = (to - from) / times;
       var tempId = setInterval(function () {
+        curTimes++;
         from += dis;
         ul.scrollTop = from;
-        if (dis === 0) {
-          clearInterval(tempId);
-          ul.scrollTop = oldTo;
-          cloneItem.remove();
-        }
-        if (dis < 0 && from <= to) {
-          clearInterval(tempId);
-          ul.scrollTop = oldTo;
-          cloneItem.remove();
-        }
-        if (dis > 0 && from >= to) {
+        if (curTimes >= times) {
           clearInterval(tempId);
           ul.scrollTop = oldTo;
           cloneItem.remove();
@@ -53,15 +45,10 @@
       }, duration);
     } else {
       var tempId = setInterval(function () {
+        curTimes++;
         from += dis;
         ul.scrollTop = from;
-        if (dis === 0) {
-          clearInterval(tempId);
-        }
-        if (dis < 0 && from <= to) {
-          clearInterval(tempId);
-        }
-        if (dis > 0 && from >= to) {
+        if (curTimes >= times) {
           clearInterval(tempId);
         }
       }, duration);
