@@ -3,6 +3,10 @@
   var menuList = document.querySelectorAll(".menu h2");
   for (var i = 0; i < menuList.length; i++) {
     menuList[i].addEventListener("click", function () {
+      var statusPlaying = document.querySelector(".submenu[status=playing]");
+      if (statusPlaying) {
+        statusPlaying.playing.stop();
+      }
       var statusOpened = document.querySelector(".submenu[status=opened]");
       if (statusOpened) {
         closeSubmenu(statusOpened);
@@ -16,8 +20,8 @@
       return;
     }
     subMenu.setAttribute("status", "playing");
-    createAnimation({
-      from: 0,
+    subMenu.playing = createAnimation({
+      from: subMenu.clientHeight,
       to: subMenu.scrollHeight,
       totalMS: totalMS,
       onmove(e) {
@@ -34,8 +38,8 @@
       return;
     }
     subMenu.setAttribute("status", "playing");
-    createAnimation({
-      from: subMenu.scrollHeight,
+    subMenu.playing = createAnimation({
+      from: subMenu.clientHeight,
       to: 0,
       totalMS: totalMS,
       onmove(e) {

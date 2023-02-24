@@ -20,6 +20,7 @@
         },
         onend() {
           than.addEventListener("click", arg.callee);
+          // than.dispatchEvent(new CustomEvent("click"));
         },
       });
     });

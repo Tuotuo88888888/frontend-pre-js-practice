@@ -16,4 +16,11 @@ function createAnimation(options) {
     }
     options.onmove && options.onmove(from);
   }, duration);
+  return {
+    stop: function (fn) {
+      fn && fn();
+      !fn && options.onend && options.onend();
+      clearInterval(timerId);
+    },
+  };
 }
