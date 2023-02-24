@@ -33,7 +33,7 @@ fnArr = {
     return a.innerText - b.innerText;
   },
   2(a, b) {
-    return a.innerText.localeCompare(b.innerText, "en", {
+    return a.innerText.localeCompare(b.innerText, "stroke", {
       sensitivity: "base",
     });
   },
@@ -41,12 +41,17 @@ fnArr = {
     return a.innerText - b.innerText;
   },
   4(a, b) {
-    return a.innerText.localeCompare(b.innerText, "en", {
+    return a.innerText.localeCompare(b.innerText, "stroke", {
       sensitivity: "base",
     });
   },
 };
 function tableSort(index) {
+  for (let i = 0; i < theadThArr.length; i++) {
+    if (theadThArr[i] !== this) {
+      theadThArr[i].setAttribute("sort-status", null);
+    }
+  }
   var sortStatus = theadThArr[index].getAttribute("sort-status");
   var sortCallback = null;
   if (!sortStatus && sortStatus !== "desc") {

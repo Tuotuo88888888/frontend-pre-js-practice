@@ -9,6 +9,10 @@
 td {
   border: 1px solid black;
 }
-/* .table-container thead,tbody,tfoot th,td:nth-child(1){
-    width: 250px;
-} */
+input[type="checkbox"] {
+  cursor: pointer;
+}
+.table-container thead th:nth-child(n + 2) {
+  cursor: pointer;
+  user-select: none;
+}
