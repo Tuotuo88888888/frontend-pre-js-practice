@@ -81,6 +81,7 @@
 }
 .menu-recommend ul li.active .title {
   font-size: 1.5em;
+  font-weight: bold;
 }
 .menu-recommend ul li.active .desc {
   visibility: visible;
