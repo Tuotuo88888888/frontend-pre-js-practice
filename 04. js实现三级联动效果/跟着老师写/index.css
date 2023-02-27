@@ -1,0 +1,37 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  background-color: cyan;
+}
+.container {
+  width: 300px;
+  margin: 30px auto;
+}
+.selectItem {
+  width: max-content;
+  white-space: nowrap;
+  margin: 8px;
+  border-radius: 10px;
+  background-color: white;
+  padding: 8px;
+}
+.selectItem span {
+  font-size: 14px;
+  display: inline-block;
+  height: 12px;
+  line-height: 12px;
+  color: #0af;
+  padding-right: 10px;
+  border-right: 2px solid gainsboro;
+}
+.selectItem select {
+  border-radius: 2px;
+  border: none;
+  margin-left: 10px;
+  width: 180px;
+  height: 20px;
+  line-height: 20px;
+}
