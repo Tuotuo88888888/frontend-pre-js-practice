@@ -1,0 +1,62 @@
+* {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.container {
+  margin: 40px auto;
+  width: max-content;
+}
+.container .main {
+  width: 430px;
+  height: 430px;
+  float: left;
+  border: 1px solid #ccc;
+  position: relative;
+}
+.container .main .modal {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  background: url(./../images/bg.png);
+}
+.container .main img {
+  display: none;
+  width: 100%;
+  height: 100%;
+}
+.container .main img.active {
+  display: block;
+}
+.container .img-ul {
+  width: 430px;
+  text-align: center;
+}
+.container .img-ul li {
+  display: inline-block;
+  margin: 2px;
+}
+.container .img-ul li img {
+  width: 60px;
+  height: 60px;
+}
+.container .img-ul li.active {
+  border: 2px solid black;
+}
+.container .secondary {
+  margin-left: 20px;
+  width: 430px;
+  height: 430px;
+  float: left;
+  border: 1px solid #ccc;
+}
+.container .secondary .img {
+  width: 100%;
+  height: 100%;
+  display: none;
+  background-repeat: no-repeat;
+}
+.container .secondary .img.active {
+  display: block;
+}
