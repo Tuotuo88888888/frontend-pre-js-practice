@@ -1,0 +1,101 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  list-style: none;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+.top {
+  height: 60px;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: linear-gradient(
+    rgba(100, 100, 100, 0.1),
+    rgba(255, 255, 255, 0.3)
+  );
+  z-index: 999;
+}
+.banner {
+  height: 400px;
+  width: 100%;
+  position: relative;
+}
+.banner .bgImg {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+.banner .bgImg a {
+  height: 100%;
+  width: 100%;
+  display: none;
+  background-repeat: no-repeat;
+  background-position: center 0;
+}
+.banner .bgImg a.active {
+  display: block;
+}
+.banner .menu {
+  position: absolute;
+  right: 0;
+  top: 60px;
+  padding: 12px;
+  color: rgba(240, 248, 255, 0.8);
+  font-size: 12px;
+  width: 280px;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+.menu-title::before {
+  content: "";
+  display: inline-block;
+  background: url(./../img/all.png) 100% 100% no-repeat;
+  width: 16px;
+  height: 15px;
+  margin-right: 7px;
+}
+.menu-title::after {
+  content: "";
+  display: block;
+  height: 1px;
+  background-color: rgba(240, 248, 255, 0.4);
+  margin: 12px 0;
+}
+.menu-recommend:before {
+  content: "";
+  display: inline-block;
+  background: url(./../img/tj.png) 100% 100% no-repeat;
+  width: 16px;
+  height: 15px;
+  margin-right: 7px;
+}
+.menu-navs {
+  margin-top: 4px;
+  margin-left: 24px;
+}
+.menu-navs a {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  height: 27px;
+  line-height: 27px;
+}
+.menu-navs a .desc {
+  margin-left: 5px;
+  visibility: hidden;
+}
+.menu-navs a.active {
+  color: rgb(240, 0, 0);
+}
+.menu-navs a.active .title {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+.menu-navs a.active .desc {
+  visibility: visible;
+}
