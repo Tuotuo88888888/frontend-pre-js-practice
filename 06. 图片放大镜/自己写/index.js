@@ -73,6 +73,9 @@
     curNav = navArr[index];
   }
   function mainMEEvent() {
+    modal.classList.add("active");
+    secondary.classList.add("active");
+
     var rect = main.getBoundingClientRect();
     var left = rect.left;
     var top = rect.top;
@@ -114,6 +117,8 @@
     }
     main.addEventListener("mousemove", mouseMove);
     main.addEventListener("mouseleave", function (event) {
+      modal.classList.remove("active");
+      secondary.classList.remove("active");
       this.removeEventListener("mousemove", mouseMove);
       this.removeEventListener("mouseleave", arguments.callee);
     });
