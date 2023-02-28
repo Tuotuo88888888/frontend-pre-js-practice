@@ -72,9 +72,7 @@
     curImg = imgArr[index];
     curNav = navArr[index];
   }
-  function mainMEEvent(event) {
-    var initX = event.clientX;
-    var initY = event.clientY;
+  function mainMEEvent() {
     var rect = main.getBoundingClientRect();
     var left = rect.left;
     var top = rect.top;
@@ -83,12 +81,16 @@
     var modalRect = modal.getBoundingClientRect();
     var modalWidth = modalRect.width;
     var modalHeight = modalRect.height;
-    var halfWidth = modalWidth / 2;
-    var halfHeight = modalHeight / 2;
+    var modalHalfWidth = modalWidth / 2;
+    var modalHalfHeight = modalHeight / 2;
+
+    var secondaryImg = document.querySelector(".secondary .active");
+    var multiplyingX = (800 - 430) / (width - modalWidth);
+    var multiplyingY = (800 - 430) / (height - modalHeight);
 
     function mouseMove(event) {
-      var x = event.clientX - left - halfWidth;
-      var y = event.clientY - top - halfHeight;
+      var x = event.clientX - left - modalHalfWidth;
+      var y = event.clientY - top - modalHalfHeight;
       if (x <= 0) {
         x = 0;
       }
@@ -103,6 +105,12 @@
       }
       modal.style.left = x + "px";
       modal.style.top = y + "px";
+      magnifying(x, y);
+    }
+    function magnifying(x, y) {
+      secondaryImg.style.backgroundPosition = `${-x * multiplyingX}px ${
+        -y * multiplyingY
+      }px`;
     }
     main.addEventListener("mousemove", mouseMove);
     main.addEventListener("mouseleave", function (event) {
