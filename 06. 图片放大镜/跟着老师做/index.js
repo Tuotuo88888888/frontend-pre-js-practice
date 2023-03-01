@@ -60,6 +60,9 @@
   }
   function initEvents() {
     main.addEventListener("mouseenter", mainMEEvent);
+    window.addEventListener("load", function () {
+      secondary.classList.add("active");
+    });
   }
   function changeNav(index) {
     if (curBgImg) {
