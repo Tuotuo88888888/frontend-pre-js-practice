@@ -94,7 +94,6 @@
     var modalHalfWidth = modalWidth / 2;
     var modalHalfHeight = modalHeight / 2;
 
-    var secondaryImg = document.querySelector(".secondary .active");
     var multiplyingX = (800 - secondary.offsetWidth) / (width - modalWidth);
     var multiplyingY = (800 - secondary.offsetHeight) / (height - modalHeight);
 
@@ -118,7 +117,7 @@
       magnifying(x, y);
     }
     function magnifying(x, y) {
-      secondaryImg.style.backgroundPosition = `${-x * multiplyingX}px ${
+      curBgImg.style.backgroundPosition = `${-x * multiplyingX}px ${
         -y * multiplyingY
       }px`;
     }
