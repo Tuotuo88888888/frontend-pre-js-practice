@@ -86,7 +86,7 @@
     secondary.classList.add("active");
 
     var left = main.offsetLeft;
-    var top = main.offsetLeft;
+    var top = main.offsetTop;
     var width = main.offsetWidth;
     var height = main.offsetHeight;
     var modalWidth = modal.offsetWidth;
