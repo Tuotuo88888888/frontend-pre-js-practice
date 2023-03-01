@@ -1,0 +1,72 @@
+* {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.container {
+  margin: 40px auto;
+  width: max-content;
+  font-size: 0px;
+}
+.container .main {
+  width: 430px;
+  height: 430px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  position: relative;
+}
+.container .main .modal {
+  display: none;
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  background: url(./../images/bg.png);
+}
+.container .main .modal.active {
+  display: block;
+}
+.container .main img {
+  display: none;
+  width: 100%;
+  height: 100%;
+}
+.container .main img.active {
+  display: block;
+}
+.container .img-ul {
+  width: 430px;
+  text-align: center;
+  margin-top: 10px;
+}
+.container .img-ul li {
+  display: inline-block;
+  margin: 2px;
+}
+.container .img-ul li img {
+  width: 60px;
+  height: 60px;
+}
+.container .img-ul li.active {
+  border: 2px solid black;
+}
+.container .secondary {
+  margin-left: 20px;
+  width: 430px;
+  height: 430px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  opacity: 0;
+}
+.container .secondary.active {
+  opacity: 1;
+}
+.container .secondary .img {
+  width: 100%;
+  height: 100%;
+  display: none;
+  background-repeat: no-repeat;
+}
+.container .secondary .img.active {
+  display: block;
+}
