@@ -1,0 +1,45 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  list-style: none;
+}
+body {
+  background-color: black;
+}
+.container {
+  width: 600px;
+  height: 400px;
+  margin: 150px auto 0;
+}
+.container .warning {
+  margin-top: -30px;
+  color: white;
+  font-weight: bold;
+  font-size: 22px;
+}
+.container .clock {
+  width: 100%;
+  height: 100%;
+  background-image: url(./../images/1.jpg);
+  color: white;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.container .clock .time-list {
+  width: 65px;
+  height: 120px;
+  font-size: 0px;
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+}
+.container .clock .span {
+  padding: 0 7px;
+  font-weight: bold;
+}
+.container .clock .time-list ul {
+  position: absolute;
+}
