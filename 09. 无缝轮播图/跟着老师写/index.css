@@ -1,0 +1,75 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+.carousel-container {
+  width: 500px;
+  height: 300px;
+  margin: 40px auto 0;
+  overflow: hidden;
+  position: relative;
+}
+.carousel-container .carousel-list {
+  width: max-content;
+  height: 100%;
+}
+.carousel-container .carousel-list .carousel-item {
+  width: 500px;
+  height: 300px;
+  object-fit: cover;
+  float: left;
+}
+.carousel-container .indicator {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  font-size: 0;
+}
+.carousel-container .indicator .indicator-item {
+  display: inline-block;
+  width: 40px;
+  height: 5px;
+  background-color: white;
+  margin-right: 10px;
+  cursor: pointer;
+}
+.carousel-container .indicator .indicator-item:last-child {
+  margin-right: 0;
+}
+.carousel-container .indicator .indicator-item.active {
+  background-color: orange;
+}
+.carousel-container .arrow-left,
+.carousel-container .arrow-right {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 50px;
+  background-color: rgba(0, 0, 0, 0.5);
+  font-size: 40px;
+  color: white;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  overflow: hidden;
+  opacity: 0;
+  transition: all 0.2s linear;
+}
+.carousel-container .arrow-left {
+  left: 0;
+}
+.carousel-container .arrow-right {
+  right: 0;
+}
+.carousel-container .arrow-left:hover,
+.carousel-container .arrow-right:hover {
+  opacity: 1;
+}

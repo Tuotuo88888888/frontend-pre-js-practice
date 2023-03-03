@@ -35,7 +35,6 @@
       var oldItem = curIndexStr[i];
       var ul = timeList[i].firstElementChild;
       if (oldItem < item) {
-        var oldlis = timeList[i].querySelectorAll("ul li");
         var oldli = ul.children[oldItem];
         var oldNextLi = oldli.nextElementSibling;
         var li = ul.children[item];
