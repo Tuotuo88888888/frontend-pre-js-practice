@@ -5,14 +5,14 @@
 }
 .container {
   border: 1px solid #ccc;
-  position: absolute;
+  position: relative;
   margin: 20px auto;
-  left: 50px;
-  right: 50px;
+  width: 90%;
 }
 
 .container .container-fluid {
   position: absolute;
+  top: 0;
   width: 220px;
-  transition: all 0.5;
+  transition: all 0.5s;
 }

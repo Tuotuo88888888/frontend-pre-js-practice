@@ -1,0 +1,28 @@
+a {
+  text-decoration: none;
+  color: inherit;
+}
+.pager-container {
+  /* width: max-content; */
+  text-align: center;
+  margin: 20 auto;
+}
+.pager-container a {
+  border: 1px solid #e1e2e3;
+  color: #001ac4;
+  height: 34px;
+  line-height: 34px;
+  padding: 0 12px;
+  cursor: pointer;
+  user-select: none;
+  margin: 8px;
+  display: inline-block;
+}
+.pager-container a.active {
+  color: red;
+  border-color: transparent;
+}
+.pager-container a.disabled {
+  color: #ccc;
+  cursor: not-allowed;
+}
