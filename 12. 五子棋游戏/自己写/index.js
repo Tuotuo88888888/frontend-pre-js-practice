@@ -4,12 +4,13 @@ var doms = {
 var chessLength = 13;
 var joinLength = 5;
 var chessArray = [];
+var isPlaying = true;
 function init() {
   initPage();
 }
 function initPage() {
   var table = document.createElement("table");
-  table.className = "chessTable";
+  table.className = "chessTable hidTextColor";
   var tbody = document.createElement("tbody");
   table.appendChild(tbody);
   for (var i = 0; i < chessLength; i++) {
@@ -26,7 +27,7 @@ function initPage() {
   doms.container.appendChild(table);
 }
 function playChess(e) {
-  if (e.target.nodeName !== "TD") {
+  if (e.target.nodeName !== "TD" || isPlaying === false) {
     return;
   }
   var positionX = e.offsetX > this.offsetWidth / 2;
@@ -43,7 +44,7 @@ function playChess(e) {
       return i.x === chessPosition.x && i.y === chessPosition.y;
     })
   ) {
-    return console.log(1);
+    return;
   }
   showChess(chessPosition);
   chessArray.push(chessPosition);
@@ -78,7 +79,9 @@ function showChess(chessPosition) {
 function outcomeCheck() {
   var curChess = chessArray[chessArray.length - 1];
   var setRangeFnArray = {
-    leftToRight(y, c) {
+    leftToRight(curChess) {
+      var y = curChess.y;
+      var c = curChess.c;
       var arr = chessArray
         .filter(function (chess) {
           return chess.y === y && chess.c === c;
@@ -96,10 +99,12 @@ function outcomeCheck() {
         } else {
           resultArray = [];
         }
-        return resultArray.length >= 5;
+        return chessActive(resultArray);
       });
     },
-    topToBottom(x, c) {
+    topToBottom(curChess) {
+      var x = curChess.x;
+      var c = curChess.c;
       var arr = chessArray
         .filter(function (chess) {
           return chess.x === x && chess.c === c;
@@ -117,19 +122,100 @@ function outcomeCheck() {
         } else {
           resultArray = [];
         }
-        return resultArray.length >= 5;
+        return chessActive(resultArray);
       });
     },
-    leftTopToRightBottom(x, y, c) {},
-    leftBottomToRightTop(x, y, c) {},
+    leftTopToRightBottom(curChess) {
+      var x = curChess.x;
+      var y = curChess.y;
+      var c = curChess.c;
+      var min = Math.min(x, y);
+      var initX = x - min;
+      var initY = y - min;
+      var arr = [];
+      for (var i = 0; i < chessLength; i++) {
+        var curX = initX + i;
+        var curY = initY + i;
+        if (curX >= chessLength || curY >= chessLength) {
+          break;
+        }
+        var curChess = chessArray.find(function (chess) {
+          return chess.x === curX && chess.y === curY && chess.c === c;
+        });
+        if (curChess) {
+          arr.push(curChess);
+        }
+      }
+      var resultArray = [];
+      return arr.some(function (chess) {
+        if (
+          resultArray.length === 0 ||
+          (resultArray[resultArray.length - 1].y === chess.y - 1 &&
+            resultArray[resultArray.length - 1].x === chess.x - 1)
+        ) {
+          resultArray.push(chess);
+        } else {
+          resultArray = [];
+        }
+        return chessActive(resultArray);
+      });
+    },
+    leftBottomToRightTop(curChess) {
+      var x = curChess.x;
+      var y = curChess.y;
+      var c = curChess.c;
+      var min = Math.min(x, chessLength - y);
+      var initX = x - min;
+      var initY = y + min;
+      var arr = [];
+      for (var i = 0; i < chessLength; i++) {
+        var curX = initX + i;
+        var curY = initY - i;
+        if (curX >= chessLength || curY < 0) {
+          break;
+        }
+        var curChess = chessArray.find(function (chess) {
+          return chess.x === curX && chess.y === curY && chess.c === c;
+        });
+        if (curChess) {
+          arr.push(curChess);
+        }
+      }
+      var resultArray = [];
+      return arr.some(function (chess) {
+        if (
+          resultArray.length === 0 ||
+          (resultArray[resultArray.length - 1].y === chess.y + 1 &&
+            resultArray[resultArray.length - 1].x === chess.x - 1)
+        ) {
+          resultArray.push(chess);
+        } else {
+          resultArray = [];
+        }
+        return chessActive(resultArray);
+      });
+    },
   };
-  console.log(setRangeFnArray.leftToRight(curChess.y, curChess.c));
-  //   for (let i = 0; i < setRangeFnArray.length; i++) {
-  //     const xFn = setRangeFnArray[i];
-  //     for (let j = 0; j < setRangeFnArray.length; j++) {
-  //       const yFn = setRangeFnArray[j];
-  //       console.log(xFn(curChess.x, joinLength));
-  //     }
-  //   }
+  var curResult = Object.keys(setRangeFnArray).some(function (key) {
+    return setRangeFnArray[key](curChess);
+  });
+  if (curResult) {
+    document.querySelector(".chessTable").classList.remove("hidTextColor");
+    isPlaying = false;
+  }
+}
+function chessActive(chessArray) {
+  if (chessArray.length >= joinLength) {
+    for (var i = 0; i < chessArray.length; i++) {
+      var chess = chessArray[i];
+      var chessDom = document.querySelector(
+        `.chessTable td div[data-row="${chess.y}"][data-line="${chess.x}"]`
+      );
+      chessDom.classList.add("active");
+    }
+    return true;
+  } else {
+    return false;
+  }
 }
 init();

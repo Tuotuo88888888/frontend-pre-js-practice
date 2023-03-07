@@ -8,6 +8,8 @@
   margin: 0;
 }
 .chessTable {
+  user-select: none;
+  cursor: pointer;
   width: max-content;
   border-collapse: collapse;
   margin: 0 auto;
@@ -44,4 +46,11 @@
 .chess.white {
   background-color: white;
   color: black;
+}
+.chess.active {
+  border-color: red;
+  color: red;
+}
+.chessTable.hidTextColor .chess {
+  color: transparent;
 }
