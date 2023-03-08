@@ -43,7 +43,6 @@ function game() {
     doms.gamebtn.style.transition = "all 2s ease-out";
     doms.gamebtn.style.transform = "rotate(1800deg)";
     doms.gamebtn.addEventListener("transitionend", function () {
-      doms.gamebtn.style.transition = "none";
       doms.gameCentrePoint.style.opacity = 0;
       doms.gameContent.style.opacity = 1;
       this.removeEventListener("transitionend", arguments.callee);
