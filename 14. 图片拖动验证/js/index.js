@@ -84,6 +84,7 @@ function init() {
             // 接下来就会有一个很关键的点，我们需要得到用户移动鼠标时的最新的 left 值
 
             var newLeft = ev.clientX - slider.offsetLeft - e.offsetX;
+            console.log(ev.clientX,slider.offsetLeft,e.offsetX);
 
             // 我们还需要进行一个边界判断
             if (newLeft < -2) {

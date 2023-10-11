@@ -90,6 +90,7 @@ function slidingChange(e) {
       doms.bodyHint.className = "body-hint sur";
       doms.imgGap.style.opacity = 0;
       doms.imgBlock.style.opacity = 0;
+      doms.slidingBtn.removeEventListener("mousedown", slidingChange);
     } else {
       doms.slidingHint.style.opacity = 1;
       doms.bodyHint.innerText = "验证失败";

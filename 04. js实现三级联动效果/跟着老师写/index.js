@@ -63,12 +63,12 @@ document.addEventListener("DOMContentLoaded", function () {
     );
   }
   function schoolChangeHandler() {}
-  function bindSelection(element, optionArray, optionCallback) {
+  function bindSelection(element, optionObject, optionCallback) {
     element.innerHTML = "";
     var options = document.createDocumentFragment();
-    for (var key in optionArray) {
+    for (var key in optionObject) {
       var option = document.createElement("option");
-      optionCallback(option, optionArray[key] || key, key);
+      optionCallback(option, optionObject[key] || key, key);
       options.append(option);
     }
     element.append(options);
